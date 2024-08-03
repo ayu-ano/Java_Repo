@@ -1,4 +1,4 @@
-public class four_direction_rat_in_maze {
+public class t3_four_direction_rat_in_maze {
    // move the rat i all four direction
     // little implementation of backtracking
     // 3rd

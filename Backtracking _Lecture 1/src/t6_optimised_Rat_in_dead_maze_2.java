@@ -1,12 +1,11 @@
 import java.util.Scanner;
-public class Rat_in_Dead_maze {
-    // qn. 4th
-// this qn. given general rat in maze in which rat can move   down and right        which
-// makes this question normal recursion qn. but trick is tere is some block are dead
-    // means you are not allow to enter that block means consider as dead end
-
-    // here 0 means dead end and 1 means you can enter the matrix
+public class t6_optimised_Rat_in_dead_maze_2 {
+    // qn.6  OPTIMISE the space using only maze without using is visited array
+    // s.c =O(1)   qn.7 solved in leetcode which name is  permutations
     public static void print(int sr, int sc , int er, int ec, String s,int[][]maze){
+        if(sr<0 || sc<0){
+            return ;
+        }
         if(sr > er || sc >ec){
             return ;
         }
@@ -17,13 +16,26 @@ public class Rat_in_Dead_maze {
         if(maze[sr][sc]==0){
             return;
         }
+        if(maze[sr][sc]==-1){
+            return;
+        }
+        maze[sr][sc]=-1;
+
         // for down way
         print(sr+1,sc,er,ec,s+"D",maze);
         // for right way
         print(sr,sc+1,er,ec,s+"R",maze);
+
+        // for left way
+        print(sr,sc-1,er,ec,s+"l",maze);
+        // for up way
+        print(sr-1,sc,er,ec,s+"U",maze);
+
+        maze[sr][sc]=1 ;  // final optimisation
     }
     public static void main(String[] args) {
-     //   user input
+
+        //   user input
 //        Scanner scanner = new Scanner(System.in);
 //
 //        System.out.print("Enter the number of rows: ");
@@ -54,12 +66,20 @@ public class Rat_in_Dead_maze {
 //            System.out.println();
 //        }
         // hard coded
-        int rows =4;
-        int columns = 6;
-        int[][] maze = {{1,0,1,1,1,1},  // 0 means  not allowed area  1 means allowed area
-                        {1,1,1,1,0,1},
-                        {0,1,1,1,1,1},
-                        {0,0,1,0,1,1}};
+//        int rows =4;
+//        int columns = 6;
+
+//        int[][] maze = {{1,0,1,1,1,1},  // 0 means  not allowed area  1 means allowed area
+//                        {1,1,1,1,0,1},
+//                        {0,1,1,1,1,1},
+//                        {0,0,1,0,1,1}};
+
+
+        int rows =3;
+        int columns = 4;
+        int[][] maze = {{1,0,1,1},  // 0 means  not allowed area  1 means allowed area
+                        {1,1,1,1},
+                        {1,1,0,1}};
 
         print(0, 0,rows-1,columns-1,"", maze);
 

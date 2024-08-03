@@ -1,8 +1,15 @@
 import java.util.Scanner;
-public class optimised_Rat_in_dead_maze_2 {
-    // qn.6  OPTIMISE the space using only maze without using is visited array
-    // s.c =O(1)   qn.7 solved in leetcode which name is  permutations
-    public static void print(int sr, int sc , int er, int ec, String s,int[][]maze){
+public class t5_rat_in_dead_maze_2 {
+    // qn. 5th
+    // here we use backtracking when we use four direction
+// this qn. given general rat in maze in which rat can move   down and right    , left and upward    which
+// makes this question normal recursion qn. but trick is here is some block are dead
+    // means you are not allow to enter that block means consider as dead end
+
+    // here 0 means dead end and 1 means you can enter the matrix
+
+    // here space complexity is very high O(N*M)
+    public static void print(int sr, int sc , int er, int ec, String s,int[][]maze, boolean[][]isvisited){
         if(sr<0 || sc<0){
             return ;
         }
@@ -16,22 +23,22 @@ public class optimised_Rat_in_dead_maze_2 {
         if(maze[sr][sc]==0){
             return;
         }
-        if(maze[sr][sc]==-1){
+        if(isvisited[sr][sc]==true){
             return;
         }
-        maze[sr][sc]=-1;
+        isvisited[sr][sc]=true;
 
         // for down way
-        print(sr+1,sc,er,ec,s+"D",maze);
+        print(sr+1,sc,er,ec,s+"D",maze,isvisited);
         // for right way
-        print(sr,sc+1,er,ec,s+"R",maze);
+        print(sr,sc+1,er,ec,s+"R",maze,isvisited);
 
         // for left way
-        print(sr,sc-1,er,ec,s+"l",maze);
+        print(sr,sc-1,er,ec,s+"l",maze, isvisited);
         // for up way
-        print(sr-1,sc,er,ec,s+"U",maze);
+        print(sr-1,sc,er,ec,s+"U",maze, isvisited);
 
-        maze[sr][sc]=1 ;  // final optimisation
+        isvisited[sr][sc]=false ;  // final optimisation
     }
     public static void main(String[] args) {
 
@@ -68,20 +75,19 @@ public class optimised_Rat_in_dead_maze_2 {
         // hard coded
 //        int rows =4;
 //        int columns = 6;
-
+//        boolean [][] isvisited = new boolean [rows][columns] ;
 //        int[][] maze = {{1,0,1,1,1,1},  // 0 means  not allowed area  1 means allowed area
 //                        {1,1,1,1,0,1},
 //                        {0,1,1,1,1,1},
 //                        {0,0,1,0,1,1}};
-
-
         int rows =3;
         int columns = 4;
+        boolean [][] isvisited = new boolean [rows][columns] ;
         int[][] maze = {{1,0,1,1},  // 0 means  not allowed area  1 means allowed area
                         {1,1,1,1},
                         {1,1,0,1}};
 
-        print(0, 0,rows-1,columns-1,"", maze);
+        print(0, 0,rows-1,columns-1,"", maze,isvisited);
 
     }
 }

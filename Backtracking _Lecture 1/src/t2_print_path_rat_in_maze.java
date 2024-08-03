@@ -1,4 +1,4 @@
-public class print_path_rat_in_maze {
+public class t2_print_path_rat_in_maze {
     // yai proper recursion tha
     //2nd
     public static void print(int sr, int sc , int er, int ec, String s){

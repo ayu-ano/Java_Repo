@@ -1,4 +1,4 @@
-public class Rat_in_maze{
+public class t1_Rat_in_maze{
     // lecture cllg wallah 63
     // 1st
     // yai proper recursion tha
