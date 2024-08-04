@@ -1,5 +1,7 @@
 import java.util.*;
-
+// perfect gfg - expectance
+/*Time Complexity: 
+ */
 public class t8_Rat_in_maze_deak_gfg {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
